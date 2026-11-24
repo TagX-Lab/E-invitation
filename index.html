@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Enbaraj & Nimitha | Royal Wedding Invitation</title>
+
+  <!-- WhatsApp & Social Media Preview Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Enbaraj & Nimitha | Royal Wedding Invitation 💍">
+  <meta property="og:description" content="We cordially invite you to celebrate our auspicious wedding ceremonies at SSK Mahal, Anna Nagar, Chennai. Tap to open the royal invitation!">
+  <meta property="og:image" content="assets/couple-royal.jpg">
+  <meta name="theme-color" content="#250105">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Tiro+Tamil:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --maroon-deep: #250105;
+      --maroon-rich: #490710;
+      --maroon-royal: #6b0c1a;
+      
+      --gold-light: #fff3c2;
+      --gold-mid: #e5bd57;
+      --gold-deep: #b3821a;
+      
+      --gold-foil: linear-gradient(135deg, #ffeaa7 0%, #d4af37 25%, #996515 50%, #f9e498 75%, #cca028 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: #110103;
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(142, 21, 37, 0.45) 0%, transparent 60%),
+        radial-gradient(circle at 50% 90%, rgba(179, 130, 26, 0.25) 0%, transparent 70%);
+      font-family: 'Montserrat', sans-serif;
+      color: #2c1810;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      perspective: 1400px;
+    }
+
+    /* Falling Flowers & Sparkles Canvas */
+    #petals-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Phone Mockup Frame */
+    .mobile-wrapper {
+      width: 100%;
+      max-width: 430px;
+      height: 100vh;
+      max-height: 100vh;
+      background: var(--maroon-deep);
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border-radius: 0;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.9);
+      scrollbar-width: none; /* Hide scrollbar Firefox */
+      -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+    }
+
+    .mobile-wrapper::-webkit-scrollbar {
+      display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
+    /* Zero Scrolling on Envelope Screen */
+    .mobile-wrapper.envelope-locked {
+      overflow: hidden !important;
+      touch-action: none;
+    }
+
+    /* Native Fullscreen Mobile Mode */
+    @media (max-width: 500px) {
+      .phone-notch {
+        display: none !important;
+      }
+      body {
+        background: var(--maroon-deep) !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .mobile-wrapper {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+
+    @media (min-width: 500px) {
+      .mobile-wrapper {
+        min-height: 850px;
+        height: 92vh;
+        max-height: 92vh;
+        border-radius: 48px;
+        border: 11px solid #231c19;
+        margin: 18px auto;
+        box-shadow: 
+          0 0 0 2px #4b3d32, 
+          0 0 35px rgba(212, 175, 55, 0.25),
+          0 35px 90px rgba(0, 0, 0, 0.95);
+      }
+    }
+
+    /* Phone Status Bar */
+    .phone-notch {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 24px;
+      color: rgba(255, 235, 180, 0.85);
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 100;
+      background: rgba(30, 2, 5, 0.6);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .island {
+      width: 95px;
+      height: 24px;
+      background: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
+    }
+
+    /* =========================================
+       ENVELOPE SCREEN (SCREEN 1)
+       ========================================= */
+    .envelope-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 40%, #520b14 0%, #170103 80%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      z-index: 50;
+      transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 24px 20px 20px;
+      overflow: hidden !important;
+      touch-action: none;
+    }
+
+    .envelope-screen.opened {
+      opacity: 0;
+      transform: scale(1.15) translateY(-60px);
+      pointer-events: none;
+      display: none;
+    }
+
+    .pov-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pov-badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ffe594;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-top: 1px solid rgba(212, 175, 55, 0.5);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+    }
+
+    .pov-tamil {
+      font-family: 'Tiro Tamil', serif;
+      font-size: 14px;
+      color: rgba(255, 235, 180, 0.9);
+      letter-spacing: 1.5px;
+    }
+
+    /* 3D Envelope */
+    .envelope-box {
+      width: 320px;
+      height: 440px;
+      position: relative;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .envelope-body {
+      width: 100%;
+      height: 100%;
+      background: #460910;
+      border-radius: 16px;
+      box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.85),
+        inset 0 0 0 1px rgba(212, 175, 55, 0.35),
+        inset 0 0 80px rgba(15, 0, 2, 0.9);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+    }
+
+    .envelope-body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background-image: 
+        radial-gradient(#ffd700 1.2px, transparent 1.2px), 
+        radial-gradient(#ffd700 1.2px, transparent 1.2px);
+      background-size: 26px 26px;
+      background-position: 0 0, 13px 13px;
+    }
+
+    .envelope-fold-left {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-bottom: 230px solid #36050b;
+      border-right: 160px solid transparent;
+      z-index: 2;
+    }
+
+    .envelope-fold-right {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-bottom: 230px solid #320409;
+      border-left: 160px solid transparent;
+      z-index: 2;
+    }
+
+    .envelope-fold-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-bottom: 190px solid #480811;
+      z-index: 3;
+      filter: drop-shadow(0 -6px 14px rgba(0,0,0,0.45));
+    }
+
+    .envelope-top-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 200px solid #570c17;
+      transform-origin: top center;
+      transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 5;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
+    }
+
+    .envelope-box.is-opening .envelope-top-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .ribbon-horizontal {
+      position: absolute;
+      top: 55%;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: var(--gold-foil);
+      z-index: 4;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      transition: opacity 0.5s ease 0.4s, transform 0.6s ease 0.4s;
+    }
+
+    .ribbon-horizontal::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.7);
+      top: 4px;
+    }
+
+    .envelope-box.is-opening .ribbon-horizontal {
+      transform: scaleY(0.1);
+      opacity: 0;
+    }
+
+    .wax-seal {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 88px;
+      height: 88px;
+      background: radial-gradient(circle at 35% 30%, #fff0b8 0%, #d4af37 40%, #94630f 80%, #5e3b00 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 14px 30px rgba(0, 0, 0, 0.7), 
+        inset 0 3px 6px rgba(255, 255, 255, 0.85),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 3px solid #fef3d6;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .wax-seal:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+      box-shadow: 0 16px 36px rgba(212, 175, 55, 0.5);
+    }
+
+    .wax-seal::before {
+      content: '';
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border: 1.5px dashed rgba(255, 245, 215, 0.7);
+      border-radius: 50%;
+    }
+
+    .seal-monogram {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 26px;
+      font-weight: 800;
+      color: #3f2200;
+      text-shadow: 1px 1px 1px rgba(255, 250, 230, 0.8), -1px -1px 2px rgba(80, 40, 0, 0.7);
+    }
+
+    .seal-amp {
+      font-family: 'Great Vibes', cursive;
+      font-size: 19px;
+      margin: -6px 0;
+      color: #552f02;
+    }
+
+    .tap-hint {
+      margin-top: 0;
+      color: #ffe594;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: pulseHint 2s infinite ease-in-out;
+      cursor: pointer;
+    }
+
+    @keyframes pulseHint {
+      0%, 100% { transform: translateY(0); opacity: 0.85; }
+      50% { transform: translateY(-6px); opacity: 1; text-shadow: 0 0 10px rgba(255,229,148,0.6); }
+    }
+
+    /* =========================================
+       MAIN INVITATION CONTENT SCREEN
+       ========================================= */
+    .invitation-container {
+      width: 100%;
+      min-height: 100%;
+      background: #fbf7ee;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 235, 170, 0.3) 0%, transparent 60%),
+        linear-gradient(to bottom, #fffdf8, #f7f1e3);
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
+      padding-bottom: 90px;
+      display: none;
+    }
+
+    .invitation-container.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Royal Card Container */
+    .card-wrapper {
+      padding: 24px 16px 12px;
+      position: relative;
+    }
+
+    .ornate-card {
+      background: #fffdf9;
+      border-radius: 24px;
+      padding: 30px 18px 24px;
+      position: relative;
+      box-shadow: 
+        0 15px 45px rgba(80, 10, 20, 0.09),
+        inset 0 0 0 4px #fff,
+        inset 0 0 0 6px #e6c875,
+        inset 0 0 0 10px #fffdfa,
+        inset 0 0 0 11px rgba(212, 175, 55, 0.4);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Corner Flourishes */
+    .corner-decor {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      fill: none;
+      stroke: var(--gold-mid);
+      stroke-width: 1.5;
+    }
+    .corner-tl { top: 12px; left: 12px; }
+    .corner-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+    .corner-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+    .corner-br { bottom: 12px; right: 12px; transform: scale(-1); }
+
+    .mantra {
+      font-family: 'Tiro Tamil', serif;
+      font-size: 14px;
+      color: var(--maroon-royal);
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    /* Divine Lord Vinayagar Frame */
+    .vinayagar-divine-frame {
+      width: 95px;
+      height: 120px;
+      margin: 8px auto 14px;
+      border-radius: 50% 50% 18px 18px;
+      padding: 4px;
+      background: var(--gold-foil);
+      box-shadow: 
+        0 10px 25px rgba(179, 130, 26, 0.45),
+        0 0 20px rgba(255, 215, 0, 0.4);
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .vinayagar-divine-frame:hover {
+      transform: scale(1.05);
+    }
+
+    .vinayagar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      border-radius: 50% 50% 14px 14px;
+      border: 2px solid #fffdf8;
+      display: block;
+    }
+
+    .card-subtext {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8c7662;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .couple-title {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--maroon-royal);
+      letter-spacing: 1px;
+      line-height: 1.15;
+    }
+
+    .ampersand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: var(--gold-deep);
+      display: block;
+      margin: -2px 0 2px;
+      font-weight: 400;
+    }
+
+    .divider-gold {
+      width: 140px;
+      height: 16px;
+      margin: 12px auto;
+      display: block;
+    }
+
+    .date-badge {
+      display: inline-block;
+      padding: 7px 22px;
+      background: var(--gold-foil);
+      border-radius: 30px;
+      color: #482c00;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+
+    /* Auspicious Muhurtham & Reception Cards */
+    .events-box {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .event-card {
+      background: #faf4e6;
+      border-left: 4px solid var(--maroon-royal);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: left;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.25);
+    }
+
+    .event-type {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--maroon-royal);
+      letter-spacing: 1px;
+    }
+
+    .event-time {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3b281c;
+      margin: 4px 0 2px;
+    }
+
+    .event-note {
+      font-size: 11px;
+      color: #7d6756;
+    }
+
+    /* Venue Card */
+    .venue-card {
+      margin-top: 16px;
+      padding: 16px;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px dashed #cfb268;
+    }
+
+    .venue-name {
+      font-family: 'Cinzel', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--maroon-royal);
+    }
+
+    .venue-address {
+      font-size: 12px;
+      color: #55443a;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    /* ========================================================
+       1. ROYAL COUPLE CAMEO PHOTO (USER'S PHOTO 1)
+       ======================================================== */
+    .cameo-section {
+      margin: 24px 16px;
+      text-align: center;
+    }
+
+    .cameo-frame {
+      width: 220px;
+      height: 280px;
+      margin: 0 auto;
+      border-radius: 50% / 46%;
+      padding: 9px;
+      background: var(--gold-foil);
+      box-shadow: 
+        0 16px 40px rgba(0,0,0,0.45),
+        inset 0 0 16px rgba(0,0,0,0.4);
+      position: relative;
+      transition: transform 0.4s ease;
+    }
+
+    .cameo-frame:hover {
+      transform: scale(1.02);
+    }
+
+    .cameo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50% / 46%;
+      overflow: hidden;
+      background: #39040a;
+      border: 3px solid #570912;
+      position: relative;
+    }
+
+    .cameo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .cameo-frame:hover .cameo-img {
+      transform: scale(1.06);
+    }
+
+    .cameo-caption-box {
+      margin-top: 12px;
+    }
+
+    .cameo-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px;
+      color: #6b0c1a;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    }
+
+    .cameo-vow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7b6555;
+      font-weight: 600;
+    }
+
+    /* ========================================================
+       2. SACRED WEDDING PHOTO STORY GALLERY (USER'S PHOTOS 2 & 3)
+       ======================================================== */
+    .photo-story-section {
+      margin: 26px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .story-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(80, 10, 20, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      position: relative;
+    }
+
+    .story-img-container {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .story-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .story-card:hover .story-img {
+      transform: scale(1.05);
+    }
+
+    .story-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30, 2, 5, 0.75) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+
+    .story-overlay-text {
+      color: #fff;
+      text-align: left;
+    }
+
+    .story-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--gold-foil);
+      color: #3b2200;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+
+    .story-title {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff2cf;
+    }
+
+    .story-desc {
+      font-size: 12px;
+      color: #55443a;
+      padding: 14px 16px;
+      line-height: 1.5;
+      text-align: left;
+      background: #fffdf9;
+    }
+
+    /* COUNTDOWN SECTION */
+    .countdown-section {
+      margin: 20px 16px;
+      background: radial-gradient(circle at 50% 20%, #4f0813 0%, #200105 100%);
+      border-radius: 22px;
+      padding: 22px 14px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 225, 140, 0.35);
+      position: relative;
+    }
+
+    .countdown-title {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: #ffe499;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .timer-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 224, 130, 0.3);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 10px 4px;
+    }
+
+    .timer-num {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffd978;
+      display: block;
+    }
+
+    .timer-lbl {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 2px;
+      display: block;
+    }
+
+    /* ROYAL ACTION CARDS */
+    .royal-experience-area {
+      margin: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section-eyebrow {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--maroon-royal);
+      font-weight: 700;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 1px;
+      background: var(--gold-mid);
+    }
+    .section-eyebrow::before { left: 20px; }
+    .section-eyebrow::after { right: 20px; }
+
+    .royal-action-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+      position: relative;
+      box-shadow: 0 10px 28px rgba(80, 10, 20, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .royal-action-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 16px 36px rgba(110, 15, 25, 0.16);
+      border-color: #d4af37;
+    }
+
+    .royal-action-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--gold-foil);
+    }
+
+    .action-medallion {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff0b8, #d4af37 60%, #94630f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(179, 130, 26, 0.35);
+      flex-shrink: 0;
+      font-size: 24px;
+      border: 2px solid #fffdf8;
+      position: relative;
+    }
+
+    .action-medallion::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 1px dashed rgba(212, 175, 55, 0.6);
+      border-radius: 50%;
+    }
+
+    .action-text-group {
+      flex: 1;
+      text-align: left;
+    }
+
+    .action-badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-deep);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .action-title {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--maroon-royal);
+    }
+
+    .action-desc {
+      font-size: 12px;
+      color: #6d5b4e;
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .action-arrow {
+      font-size: 18px;
+      color: var(--gold-deep);
+      padding-right: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .royal-action-card:hover .action-arrow {
+      transform: translateX(4px);
+    }
+
+    /* DIGITAL AKSHADHAI & PUSHPAM SHOWER */
+    .akshadhai-plate-card {
+      background: radial-gradient(circle at 50% 30%, #5a0914, #270106);
+      border-radius: 20px;
+      padding: 22px 16px;
+      text-align: center;
+      color: #fff;
+      border: 1.5px solid #e0b445;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .akshadhai-plate-card:active {
+      transform: scale(0.98);
+    }
+
+    .thamboolam-plate-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 10px;
+      background: var(--gold-foil);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      border: 2px solid #fff;
+      animation: floatPlate 3s infinite ease-in-out;
+    }
+
+    @keyframes floatPlate {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .plate-title {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffd978;
+      letter-spacing: 1px;
+    }
+
+    .plate-tamil {
+      font-family: 'Tiro Tamil', serif;
+      font-size: 13px;
+      color: rgba(255, 235, 180, 0.9);
+      margin: 4px 0 10px;
+    }
+
+    .plate-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 24px;
+      background: var(--gold-foil);
+      border-radius: 30px;
+      color: #432600;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Floating Music Toggle */
+    .music-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 50px;
+      height: 50px;
+      background: var(--gold-foil);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 990;
+      transition: transform 0.3s ease;
+    }
+
+    .music-toggle.playing {
+      animation: spinMusic 7s linear infinite;
+    }
+
+    @keyframes spinMusic {
+      100% { transform: rotate(360deg); }
+    }
+
+    .music-toggle svg {
+      width: 24px;
+      height: 24px;
+      fill: #44050d;
+    }
+
+    /* Blessings Shower Floating Elements */
+    .blessing-float {
+      position: fixed;
+      font-size: 32px;
+      pointer-events: none;
+      z-index: 1000;
+      animation: floatUp 2.8s forwards ease-out;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.6) rotate(0deg);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translateY(-160px) scale(1.3) rotate(25deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-320px) scale(1.6) rotate(50deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Falling Flowers & Sparkles Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <div class="mobile-wrapper envelope-locked" id="mobileWrapper">
+    <!-- Phone Notch -->
+    <div class="phone-notch">
+      <span>9:41</span>
+      <div class="island"></div>
+      <span>5G 100%</span>
+    </div>
+
+    <!-- ENVELOPE SCREEN (Initial State) -->
+    <div class="envelope-screen" id="envelopeScreen">
+      <div class="pov-header">
+        <span class="pov-badge">Royal Wedding Invitation</span>
+        <div class="pov-tamil">திருமண அழைப்பிதழ் 🪷</div>
+      </div>
+
+      <div class="envelope-box" id="envelopeBox" onclick="openInvitation()">
+        <div class="envelope-body">
+          <div class="envelope-fold-left"></div>
+          <div class="envelope-fold-right"></div>
+          <div class="envelope-fold-bottom"></div>
+          
+          <!-- Silk Ribbon Band -->
+          <div class="ribbon-horizontal"></div>
+
+          <!-- Top Flap -->
+          <div class="envelope-top-flap"></div>
+
+          <!-- 3D Wax Seal Monogram -->
+          <div class="wax-seal">
+            <span class="seal-monogram">E</span>
+            <span class="seal-amp">&</span>
+            <span class="seal-monogram">N</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tap-hint" onclick="openInvitation()">
+        <span>👆</span> Tap Wax Seal to Open
+      </div>
+    </div>
+
+    <!-- MAIN INVITATION CONTENT (Revealed after opening) -->
+    <div class="invitation-container" id="invitationContent">
+      <div class="card-wrapper">
+        <div class="ornate-card">
+          <!-- Corner Flourishes -->
+          <svg class="corner-decor corner-tl" viewBox="0 0 50 50">
+            <path d="M2,48 L2,15 A13,13 0 0,1 15,2 L48,2" />
+            <circle cx="15" cy="15" r="4" fill="#d4af37" />
+          </svg>
+          <svg class="corner-decor corner-tr" viewBox="0 0 50 50">
+            <path d="M2,48 L2,15 A13,13 0 0,1 15,2 L48,2" />
+            <circle cx="15" cy="15" r="4" fill="#d4af37" />
+          </svg>
+          <svg class="corner-decor corner-bl" viewBox="0 0 50 50">
+            <path d="M2,48 L2,15 A13,13 0 0,1 15,2 L48,2" />
+            <circle cx="15" cy="15" r="4" fill="#d4af37" />
+          </svg>
+          <svg class="corner-decor corner-br" viewBox="0 0 50 50">
+            <path d="M2,48 L2,15 A13,13 0 0,1 15,2 L48,2" />
+            <circle cx="15" cy="15" r="4" fill="#d4af37" />
+          </svg>
+
+          <!-- Mantra & Divine Vinayagar Image -->
+          <div class="mantra">|| ஸ்ரீ விநாயகர் துணை ||</div>
+          
+          <div class="vinayagar-divine-frame">
+            <img src="assets/vinayagar.jpg" alt="Lord Vinayagar" class="vinayagar-img">
+          </div>
+
+          <div class="card-subtext">Together with their families</div>
+
+          <!-- Couple Names -->
+          <h1 class="couple-title">Enbaraj</h1>
+          <span class="ampersand">&</span>
+          <h1 class="couple-title">Nimitha</h1>
+
+          <!-- Gold Floral Divider -->
+          <svg class="divider-gold" viewBox="0 0 200 24">
+            <path d="M10,12 L85,12 M115,12 L190,12" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
+            <polygon points="100,5 106,12 100,19 94,12" fill="#d4af37"/>
+            <circle cx="88" cy="12" r="2" fill="#d4af37"/>
+            <circle cx="112" cy="12" r="2" fill="#d4af37"/>
+          </svg>
+
+          <div class="date-badge">Sunday, 24 January 2027</div>
+
+          <p style="font-size: 13px; color: #5a4738; line-height: 1.6; margin-bottom: 16px;">
+            Cordially invite you to celebrate our auspicious wedding ceremonies and grace the occasion with your blessings.
+          </p>
+
+          <!-- Events Breakdown -->
+          <div class="events-box">
+            <div class="event-card">
+              <div class="event-type">🌺 சுப முகூர்த்தம் (Muhurtham)</div>
+              <div class="event-time">6:00 AM – 7:30 AM</div>
+              <div class="event-note">Followed by Traditional South Indian Feast</div>
+            </div>
+
+            <div class="event-card" style="border-left-color: #d4af37;">
+              <div class="event-type">✨ வரவேற்பு (Grand Reception)</div>
+              <div class="event-time">6:30 PM Onwards</div>
+              <div class="event-note">Music, Celebrations & Royal Dinner</div>
+            </div>
+          </div>
+
+          <!-- Venue Details -->
+          <div class="venue-card">
+            <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #8c7664; font-weight: 700; margin-bottom: 4px;">திருமண மண்டபம் (Venue)</div>
+            <div class="venue-name">SSK Mahal</div>
+            <div class="venue-address">
+              2nd Avenue, Near Roundtana, Anna Nagar,<br>
+              Chennai, Tamil Nadu – 600040
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           1. ROYAL COUPLE PORTRAIT (IMAGE 1)
+           ======================================================== -->
+      <div class="cameo-section">
+        <div class="cameo-frame">
+          <div class="cameo-inner">
+            <img src="assets/couple-royal.jpg" alt="Enbaraj and Nimitha" class="cameo-img">
+          </div>
+        </div>
+        <div class="cameo-caption-box">
+          <div class="cameo-names">Enbaraj & Nimitha</div>
+          <div class="cameo-vow">Two Souls • One Eternal Promise 💍</div>
+        </div>
+      </div>
+
+      <!-- LIVE COUNTDOWN TIMER -->
+      <div class="countdown-section">
+        <div class="countdown-title">⏳ Auspicious Moments Begin In</div>
+        <div class="timer-grid">
+          <div class="timer-card">
+            <span class="timer-num" id="d-val">00</span>
+            <span class="timer-lbl">Days</span>
+          </div>
+          <div class="timer-card">
+            <span class="timer-num" id="h-val">00</span>
+            <span class="timer-lbl">Hours</span>
+          </div>
+          <div class="timer-card">
+            <span class="timer-num" id="m-val">00</span>
+            <span class="timer-lbl">Mins</span>
+          </div>
+          <div class="timer-card">
+            <span class="timer-num" id="s-val">00</span>
+            <span class="timer-lbl">Secs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           2. SACRED RITUALS & CELEBRATION STORIES (IMAGES 2 & 3)
+           ======================================================== -->
+      <div class="photo-story-section">
+        <div class="section-eyebrow">Auspicious Moments</div>
+
+        <!-- Saptapadi / Sacred Bond Card (Image 2) -->
+        <div class="story-card">
+          <div class="story-img-container">
+            <img src="assets/saptapadi-hands.jpg" alt="Sacred Muhurtham Knot" class="story-img">
+            <div class="story-img-overlay">
+              <div class="story-overlay-text">
+                <span class="story-tag">மாங்கல்ய தாரணம்</span>
+                <div class="story-title">The Sacred Knot & Eternal Vows</div>
+              </div>
+            </div>
+          </div>
+          <div class="story-desc">
+            "Hand in hand, stepping into seven sacred steps of love, trust, and everlasting togetherness."
+          </div>
+        </div>
+
+        <!-- Family & Friends Celebration Card (Image 3) -->
+        <div class="story-card">
+          <div class="story-img-container">
+            <img src="assets/celebration.jpg" alt="Family & Friends Celebration" class="story-img">
+            <div class="story-img-overlay">
+              <div class="story-overlay-text">
+                <span class="story-tag">சுற்றமும் நட்பும்</span>
+                <div class="story-title">Surrounded by Love & Joy</div>
+              </div>
+            </div>
+          </div>
+          <div class="story-desc">
+            "A celebration is complete only with the warm smiles, laughter, and blessings of our beloved family & friends."
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           ROYAL EXPERIENCE CARDS
+           ======================================================== -->
+      <div class="royal-experience-area">
+        <div class="section-eyebrow">Guest Privileges & Details</div>
+
+        <!-- 1. ROYAL THAMBOOLAM / RSVP -->
+        <a href="https://wa.me/?text=Dear%20Enbaraj%20%26%20Nimitha,%20Heartiest%20Congratulations!%20We%20are%20thrilled%20to%20attend%20your%20wedding%20at%20SSK%20Mahal,%20Anna%20Nagar!%20Can't%20wait%20to%20bless%20you%20both!%20🪷✨" target="_blank" class="royal-action-card">
+          <div class="action-medallion">💌</div>
+          <div class="action-text-group">
+            <span class="action-badge">Instant RSVP</span>
+            <div class="action-title">Send Blessings on WhatsApp</div>
+            <div class="action-desc">Confirm your presence directly to Enbaraj & Nimitha</div>
+          </div>
+          <div class="action-arrow">❯</div>
+        </a>
+
+        <!-- 2. ROUTE & TEMPLE VENUE MAP -->
+        <a href="https://www.google.com/maps/search/?api=1&query=SSK+Mahal+Anna+Nagar+Chennai" target="_blank" class="royal-action-card">
+          <div class="action-medallion">📍</div>
+          <div class="action-text-group">
+            <span class="action-badge">Navigate to Venue</span>
+            <div class="action-title">SSK Mahal Route & Directions</div>
+            <div class="action-desc">Anna Nagar 2nd Avenue, Chennai (Open Maps)</div>
+          </div>
+          <div class="action-arrow">❯</div>
+        </a>
+
+        <!-- 3. AUSPICIOUS PANCHANGAM REMINDER -->
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Enbaraj+%26+Nimitha+Wedding&dates=20270124T003000Z/20270124T160000Z&details=Wedding+Celebration+of+Enbaraj+and+Nimitha+at+SSK+Mahal,+Anna+Nagar,+Chennai&location=SSK+Mahal,+Anna+Nagar,+Chennai" target="_blank" class="royal-action-card">
+          <div class="action-medallion">📅</div>
+          <div class="action-text-group">
+            <span class="action-badge">Save The Date</span>
+            <div class="action-title">Add to Phone Calendar</div>
+            <div class="action-desc">Auspicious Muhurtham reminder on Sunday, Jan 24</div>
+          </div>
+          <div class="action-arrow">❯</div>
+        </a>
+
+        <!-- 4. TRADITIONAL AKSHADHAI & PUSHPAM SHOWER (INTERACTIVE CEREMONY) -->
+        <div class="akshadhai-plate-card" onclick="showerAkshadhai(event)">
+          <div class="thamboolam-plate-icon">🪷</div>
+          <div class="plate-title">மங்கள அட்சதை & மலர் தூவல்</div>
+          <div class="plate-tamil">Shower Golden Akshadhai & Sacred Flowers</div>
+          <div class="plate-btn-pill">
+            <span>✨ Tap to Shower Blessings</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; color: #8e7664; font-size: 11px; padding: 20px; letter-spacing: 1px;">
+        Made with love for <strong>Enbaraj & Nimitha</strong> 💍✨
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING MUSIC TOGGLE -->
+  <div class="music-toggle" id="musicBtn" onclick="toggleMusic()">
+    <svg id="musicIcon" viewBox="0 0 24 24">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+  </div>
+
+  <!-- Background Music Audio (Dharala Prabhu BGM) -->
+  <audio id="weddingBgm" src="assets/bgm.mp3" preload="auto" loop></audio>
+
+  <script>
+    /* ========================================================
+       1. ENVELOPE OPENING ANIMATION & AUDIO
+       ======================================================== */
+    let isEnvelopeOpened = false;
+    let audioCtx = null;
+    let isPlaying = false;
+
+    function openInvitation() {
+      if (isEnvelopeOpened) return;
+      isEnvelopeOpened = true;
+
+      const envelopeBox = document.getElementById('envelopeBox');
+      const envelopeScreen = document.getElementById('envelopeScreen');
+      const invitationContent = document.getElementById('invitationContent');
+
+      envelopeBox.classList.add('is-opening');
+      playChimeSound();
+      playBgmSong(); // Start Dharala Prabhu BGM in full sound!
+      createBlessingParticles(window.innerWidth / 2, window.innerHeight / 2, 25);
+
+      setTimeout(() => {
+        envelopeScreen.classList.add('opened');
+        invitationContent.classList.add('active');
+        const wrapper = document.getElementById('mobileWrapper');
+        if (wrapper) wrapper.classList.remove('envelope-locked');
+      }, 700);
+    }
+
+    /* ========================================================
+       2. BACKGROUND MUSIC & CHIME
+       ======================================================== */
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playChimeSound() {
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
+
+        gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      } catch (e) {}
+    }
+
+    function playBgmSong() {
+      const audio = document.getElementById('weddingBgm');
+      if (audio) {
+        audio.volume = 1.0; // Full sound!
+        audio.play().then(() => {
+          isPlaying = true;
+          document.getElementById('musicBtn').classList.add('playing');
+        }).catch(err => {
+          console.log('Audio playback policy:', err);
+        });
+      }
+    }
+
+    function toggleMusic() {
+      const audio = document.getElementById('weddingBgm');
+      const btn = document.getElementById('musicBtn');
+      if (!audio) return;
+      if (audio.paused) {
+        audio.volume = 1.0;
+        audio.play();
+        isPlaying = true;
+        btn.classList.add('playing');
+      } else {
+        audio.pause();
+        isPlaying = false;
+        btn.classList.remove('playing');
+      }
+    }
+
+    /* ========================================================
+       3. LIVE COUNTDOWN TIMER (Target: Jan 24, 2027)
+       ======================================================== */
+    const weddingDate = new Date('2027-01-24T06:00:00+05:30').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('d-val').innerText = String(days).padStart(2, '0');
+        document.getElementById('h-val').innerText = String(hours).padStart(2, '0');
+        document.getElementById('m-val').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('s-val').innerText = String(seconds).padStart(2, '0');
+      } else {
+        document.getElementById('d-val').innerText = '00';
+        document.getElementById('h-val').innerText = '00';
+        document.getElementById('m-val').innerText = '00';
+        document.getElementById('s-val').innerText = '00';
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    /* ========================================================
+       4. DIGITAL AKSHADHAI & PUSHPAM SHOWER
+       ======================================================== */
+    const blessingsList = ['🌸', '🪷', '✨', '💐', '🎉', '💍', '💛', '🌺', '🌾'];
+
+    function showerAkshadhai(e) {
+      const x = e.clientX || window.innerWidth / 2;
+      const y = e.clientY || window.innerHeight / 2;
+      createBlessingParticles(x, y, 25);
+      playChimeSound();
+    }
+
+    function createBlessingParticles(originX, originY, count) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'blessing-float';
+        el.innerText = blessingsList[Math.floor(Math.random() * blessingsList.length)];
+        
+        const offsetX = (Math.random() - 0.5) * 200;
+        const offsetY = (Math.random() - 0.5) * 80;
+        
+        el.style.left = (originX + offsetX) + 'px';
+        el.style.top = (originY + offsetY) + 'px';
+        
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 2800);
+      }
+    }
+
+    /* ========================================================
+       5. 100% REAL PHOTOGRAPHIC FLOWERS & PETALS FALLING EFFECT
+       ======================================================== */
+    const canvas = document.getElementById('petals-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Helper to remove solid background and create transparent sprite canvas
+    function processTransparentSprite(imgSrc, callback) {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        const offCanvas = document.createElement('canvas');
+        const targetSize = 256;
+        offCanvas.width = targetSize;
+        offCanvas.height = targetSize;
+        const oCtx = offCanvas.getContext('2d');
+        oCtx.drawImage(img, 0, 0, targetSize, targetSize);
+        const imgData = oCtx.getImageData(0, 0, targetSize, targetSize);
+        const data = imgData.data;
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i], g = data[i+1], b = data[i+2];
+          // Remove white/light studio background
+          if (r > 240 && g > 240 && b > 240) {
+            data[i+3] = 0;
+          } else if (r > 220 && g > 220 && b > 220) {
+            const avg = (r + g + b) / 3;
+            data[i+3] = Math.round(255 - (avg - 220) * (255 / 20));
+          }
+        }
+        oCtx.putImageData(imgData, 0, 0);
+        callback(offCanvas);
+      };
+      img.src = imgSrc;
+    }
+
+    const readySprites = [];
+
+    // Load Real Photographic Studio Assets (Marigold Flower & Red Velvet Rose Petal)
+    processTransparentSprite('assets/real-marigold.jpg', (spriteCanvas) => {
+      readySprites.push({ canvas: spriteCanvas, type: 'marigold' });
+    });
+    processTransparentSprite('assets/real-rose-petal.jpg', (spriteCanvas) => {
+      readySprites.push({ canvas: spriteCanvas, type: 'rose' });
+    });
+
+    const maxFlowers = 24;
+    const flowers = [];
+
+    class RealPhotoFlower {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.spriteObj = readySprites.length ? readySprites[Math.floor(Math.random() * readySprites.length)] : null;
+        this.x = Math.random() * width;
+        this.y = Math.random() * -height - 20;
+        
+        // Realistic sizes: Marigolds are lush (38-52px), Rose petals are delicate (28-40px)
+        const isMarigold = this.spriteObj && this.spriteObj.type === 'marigold';
+        this.size = isMarigold ? (Math.random() * 14 + 38) : (Math.random() * 12 + 28);
+        
+        this.speedY = Math.random() * 1.3 + 0.9;
+        this.speedX = Math.random() * 0.8 - 0.4;
+        this.angle = Math.random() * 360;
+        this.rotSpeed = (Math.random() - 0.5) * 1.4;
+        
+        // Gentle realistic 3D perspective pitch (never squashes to a thin line!)
+        this.pitchAngle = Math.random() * Math.PI;
+        this.pitchSpeed = Math.random() * 0.03 + 0.01;
+        
+        this.opacity = Math.random() * 0.15 + 0.85;
+        this.swayTime = Math.random() * 100;
+      }
+      update() {
+        if (!this.spriteObj && readySprites.length) {
+          this.spriteObj = readySprites[Math.floor(Math.random() * readySprites.length)];
+        }
+        this.swayTime++;
+        this.y += this.speedY;
+        this.x += Math.sin(this.swayTime / 30) * 1.1 + this.speedX;
+        this.angle += this.rotSpeed;
+        this.pitchAngle += this.pitchSpeed;
+
+        if (this.y > height + 60) {
+          this.reset();
+          this.y = -40;
+          this.x = Math.random() * width;
+        }
+      }
+      draw() {
+        if (!this.spriteObj) return;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.angle * Math.PI) / 180);
+        
+        // Natural 3D wobble: gentle scaling between 0.75 and 1.0 (preserves petal fullness!)
+        const wobbleX = 0.8 + 0.2 * Math.cos(this.pitchAngle);
+        const wobbleY = 0.85 + 0.15 * Math.sin(this.pitchAngle);
+        ctx.scale(wobbleX, wobbleY);
+        
+        ctx.globalAlpha = this.opacity;
+        
+        // Soft natural drop shadow for realistic floating depth
+        ctx.shadowColor = 'rgba(40, 5, 10, 0.25)';
+        ctx.shadowBlur = 8;
+        ctx.shadowOffsetY = 4;
+        
+        ctx.drawImage(this.spriteObj.canvas, -this.size / 2, -this.size / 2, this.size, this.size);
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < maxFlowers; i++) {
+      flowers.push(new RealPhotoFlower());
+    }
+
+    function animateFlowers() {
+      ctx.clearRect(0, 0, width, height);
+      for (let f of flowers) {
+        f.update();
+        f.draw();
+      }
+      requestAnimationFrame(animateFlowers);
+    }
+    animateFlowers();
+  </script>
+</body>
+</html>
