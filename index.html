@@ -1313,7 +1313,7 @@
     function playBgmSong() {
       const audio = document.getElementById('weddingBgm');
       if (audio) {
-        audio.volume = 0.6; // Reduced to 60% volume as requested!
+        audio.volume = 0.25; // Reduced to 25% volume for subtle elegant background ambiance
         audio.play().then(() => {
           isPlaying = true;
           document.getElementById('musicBtn').classList.add('playing');
@@ -1328,7 +1328,7 @@
       const btn = document.getElementById('musicBtn');
       if (!audio) return;
       if (audio.paused) {
-        audio.volume = 0.6; // 60% volume
+        audio.volume = 0.25; // 25% volume
         audio.play();
         isPlaying = true;
         btn.classList.add('playing');
