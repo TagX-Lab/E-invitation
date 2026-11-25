@@ -1,0 +1,365 @@
+/* =========================================
+   MAIN INVITATION CARD & STORIES
+   ========================================= */
+.invitation-container {
+  width: 100%;
+  min-height: 100%;
+  background: #fbf7ee;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 235, 170, 0.3) 0%, transparent 60%),
+    linear-gradient(to bottom, #fffdf8, #f7f1e3);
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
+  padding-bottom: 90px;
+  display: none;
+}
+
+.invitation-container.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-wrapper {
+  padding: 24px 16px 12px;
+  position: relative;
+}
+
+.ornate-card {
+  background: #fffdf9;
+  border-radius: 24px;
+  padding: 30px 18px 24px;
+  position: relative;
+  box-shadow: 
+    0 15px 45px rgba(80, 10, 20, 0.09),
+    inset 0 0 0 4px #fff,
+    inset 0 0 0 6px #e6c875,
+    inset 0 0 0 10px #fffdfa,
+    inset 0 0 0 11px rgba(212, 175, 55, 0.4);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Corner Flourishes */
+.corner-decor {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  fill: none;
+  stroke: var(--gold-mid);
+  stroke-width: 1.5;
+}
+.corner-tl { top: 12px; left: 12px; }
+.corner-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+.corner-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.corner-br { bottom: 12px; right: 12px; transform: scale(-1); }
+
+.mantra {
+  font-family: 'Tiro Tamil', serif;
+  font-size: 14px;
+  color: var(--maroon-royal);
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+/* Divine Lord Vinayagar Frame */
+.vinayagar-divine-frame {
+  width: 95px;
+  height: 120px;
+  margin: 8px auto 14px;
+  border-radius: 50% 50% 18px 18px;
+  padding: 4px;
+  background: var(--gold-foil);
+  box-shadow: 
+    0 10px 25px rgba(179, 130, 26, 0.45),
+    0 0 20px rgba(255, 215, 0, 0.4);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.vinayagar-divine-frame:hover {
+  transform: scale(1.05);
+}
+
+.vinayagar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 50% 50% 14px 14px;
+  border: 2px solid #fffdf8;
+  display: block;
+}
+
+.card-subtext {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8c7662;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.couple-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--maroon-royal);
+  letter-spacing: 1px;
+  line-height: 1.15;
+}
+
+.ampersand {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  color: var(--gold-deep);
+  display: block;
+  margin: -2px 0 2px;
+  font-weight: 400;
+}
+
+.divider-gold {
+  width: 140px;
+  height: 16px;
+  margin: 12px auto;
+  display: block;
+}
+
+.date-badge {
+  display: inline-block;
+  padding: 7px 22px;
+  background: var(--gold-foil);
+  border-radius: 30px;
+  color: #482c00;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+}
+
+.invitation-intro {
+  font-size: 13px;
+  color: #5a4738;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Auspicious Muhurtham & Reception Cards */
+.events-box {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-card {
+  background: #faf4e6;
+  border-left: 4px solid var(--maroon-royal);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: left;
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.25);
+}
+
+.event-type {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--maroon-royal);
+  letter-spacing: 1px;
+}
+
+.event-time {
+  font-size: 14px;
+  font-weight: 700;
+  color: #3b281c;
+  margin: 4px 0 2px;
+}
+
+.event-note {
+  font-size: 11px;
+  color: #7d6756;
+}
+
+/* Venue Card */
+.venue-card {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px dashed #cfb268;
+}
+
+.venue-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #8c7664;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.venue-name {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--maroon-royal);
+}
+
+.venue-address {
+  font-size: 12px;
+  color: #55443a;
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+/* Royal Couple Cameo Frame */
+.cameo-section {
+  margin: 24px 16px;
+  text-align: center;
+}
+
+.cameo-frame {
+  width: 220px;
+  height: 280px;
+  margin: 0 auto;
+  border-radius: 50% / 46%;
+  padding: 9px;
+  background: var(--gold-foil);
+  box-shadow: 
+    0 16px 40px rgba(0,0,0,0.45),
+    inset 0 0 16px rgba(0,0,0,0.4);
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.cameo-frame:hover {
+  transform: scale(1.02);
+}
+
+.cameo-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% / 46%;
+  overflow: hidden;
+  background: #39040a;
+  border: 3px solid #570912;
+  position: relative;
+}
+
+.cameo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.cameo-frame:hover .cameo-img {
+  transform: scale(1.06);
+}
+
+.cameo-caption-box {
+  margin-top: 12px;
+}
+
+.cameo-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+  color: #6b0c1a;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
+
+.cameo-vow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #7b6555;
+  font-weight: 600;
+}
+
+/* Sacred Photo Story Gallery */
+.photo-story-section {
+  margin: 26px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.story-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(80, 10, 20, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  position: relative;
+}
+
+.story-img-container {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+.story-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.story-card:hover .story-img {
+  transform: scale(1.05);
+}
+
+.story-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 2, 5, 0.75) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.story-overlay-text {
+  color: #fff;
+  text-align: left;
+}
+
+.story-tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--gold-foil);
+  color: #3b2200;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+}
+
+.story-title {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff2cf;
+}
+
+.story-desc {
+  font-size: 12px;
+  color: #55443a;
+  padding: 14px 16px;
+  line-height: 1.5;
+  text-align: left;
+  background: #fffdf9;
+}

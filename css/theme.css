@@ -1,0 +1,74 @@
+:root {
+  --maroon-deep: #250105;
+  --maroon-rich: #490710;
+  --maroon-royal: #6b0c1a;
+  
+  --gold-light: #fff3c2;
+  --gold-mid: #e5bd57;
+  --gold-deep: #b3821a;
+  --gold-dark: #6a4904;
+  
+  --ivory: #fffefb;
+  --parchment: #fcf8f0;
+  --sand-gold: #f4ecdc;
+  
+  --gold-foil: linear-gradient(135deg, #ffeaa7 0%, #d4af37 25%, #996515 50%, #f9e498 75%, #cca028 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--maroon-deep);
+  background-image: 
+    radial-gradient(circle at 50% 10%, rgba(142, 21, 37, 0.45) 0%, transparent 60%),
+    radial-gradient(circle at 50% 90%, rgba(179, 130, 26, 0.25) 0%, transparent 70%);
+  font-family: 'Montserrat', sans-serif;
+  color: #2c1810;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  perspective: 1400px;
+}
+
+/* Falling Flowers & Sparkles Canvas */
+#petals-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Main Fullscreen Mobile Container */
+.mobile-wrapper {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background: var(--maroon-deep);
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Zero Scrolling on Envelope Screen */
+.mobile-wrapper.envelope-locked {
+  overflow: hidden !important;
+  touch-action: none;
+  height: 100vh;
+}
